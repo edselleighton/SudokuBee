@@ -18,7 +18,6 @@ public class Tunog{
 			sample = AudioSystem.getClip();
 			sample.open(audioInputStream);
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
