@@ -779,7 +779,7 @@ public class SudokuBee extends Thread{
         }
 
 		if (numGiven < currentGiven) {
-			exit(exitNum);
+			exit(12);
 			return;
 		}
 

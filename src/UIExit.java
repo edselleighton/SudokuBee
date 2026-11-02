@@ -5,7 +5,7 @@ import javax.swing.JButton;
 public class UIExit extends generalPanel{
 	private JPanel pane;
 	private JLabel bg;
-	private String back[] = {"exit","back2menu","new", "corrupt","invalid", "win", "saveError", "error", "solved", "filename", "reset"};
+	private String back[] = {"exit","back2menu","new", "corrupt","invalid", "win", "saveError", "error", "solved", "filename", "reset", "excess"};
 	protected JButton yes, no, okay;
 	protected int num;
 
@@ -24,6 +24,8 @@ public class UIExit extends generalPanel{
 		
 		if (num == 11) {
 			bg = addLabel(pane,"img/bg/"+back[4]+".png",100,174);
+		} else if (num == 12) {
+			bg = addLabel(pane,"img/bg/"+back[11]+".png",100,174);
 		} else if (num != 7 && num != 8)
 			bg = addLabel(pane,"img/bg/"+back[num]+".png",100,174);
 		else if (num == 8){
