@@ -61,12 +61,12 @@ public class SudokuBee extends Thread{
 		GP = new generalPanel(container);
 
 		// action listener for the play button
-		GP.play.addActionListener(_ -> { 
+		GP.play.addActionListener(e -> { 
 			generation(); 
 		});
 
 		// action listener for the load button
-		GP.open.addActionListener(_ -> {
+		GP.open.addActionListener(e -> {
 			// hidings the main menu buttons
 			GP.setVisibleButton(false);
 
@@ -81,7 +81,7 @@ public class SudokuBee extends Thread{
 		});
 
 		// action listener for the create button
-		GP.create.addActionListener(_ -> {
+		GP.create.addActionListener(e -> {
 			// opens up the sudoku game background
 			mainGame();
 
@@ -99,7 +99,7 @@ public class SudokuBee extends Thread{
 		});
 
 		// action listener for the options button
-		GP.options.addActionListener(_ -> {
+		GP.options.addActionListener(e -> {
 			// hides the main menu buttons
 			GP.setVisibleButton(false);
 
@@ -109,12 +109,12 @@ public class SudokuBee extends Thread{
 		});
 
 		// action listener for the help button
-		GP.help.addActionListener(_ -> {
+		GP.help.addActionListener(e -> {
 			help(7); // open up helpUI
 		});
 
 		// action listener for the exit button
-		GP.exit.addActionListener(_ -> {
+		GP.exit.addActionListener(e -> {
 			// hides the main menu buttons
 			GP.setVisibleButton(false);
 			exit(0); // opens up exit UI 0
@@ -136,7 +136,7 @@ public class SudokuBee extends Thread{
 		} catch (Exception e) {}
 
 		// action listener to cancel button 
-		load.cancel.addActionListener(_ -> {
+		load.cancel.addActionListener(event -> {
 			try {
 				// make both the game and status UI visible
 				game.setVisible(true);
@@ -155,7 +155,7 @@ public class SudokuBee extends Thread{
 		});
 
 		// action listener to load button
-		load.load.addActionListener(_ -> {
+		load.load.addActionListener(e -> {
 			// open up the specific file
 			open(load.lists.getSelectedValue() + "");
 			
@@ -240,7 +240,7 @@ public class SudokuBee extends Thread{
 		for(int ctr = 0; ctr<size; ctr++) {
 			final int popCounter = ctr+1;
 
-			pop.btn[ctr].addActionListener(_ -> {
+			pop.btn[ctr].addActionListener(e -> {
 				popupFunction(size, popCounter);
 			});
 		}
@@ -311,7 +311,7 @@ public class SudokuBee extends Thread{
 		});
 
 		// for erasing answers
-		pop.erase.addActionListener(_ -> {
+		pop.erase.addActionListener(e -> {
 			GP.changePicture(board.btn[pop.btnX][pop.btnY],"img/box/"+pop.size+"x"+pop.size+"/normal/0.png");
 			board.setSudokuArray(0, false,pop.btnX, pop.btnY);
 			pop.setVisible(false,0,0,0);
@@ -320,7 +320,7 @@ public class SudokuBee extends Thread{
 		});
 
 		// closing the popup
-		pop.cancel.addActionListener(_ -> {
+		pop.cancel.addActionListener(e -> {
 			pop.setVisible(false,0,0,0);
 			status.setVisible(true);
 			game.setVisible(isAns);
@@ -369,7 +369,7 @@ public class SudokuBee extends Thread{
 		game = new UIGame(GP.panel[6]);
 
 		// playing a new game 
-		game.newGame.addActionListener(_ -> {
+		game.newGame.addActionListener(e -> {
 			// hide the game and status buttons
 			game.setVisible(false);
 			status.setVisible(false);
@@ -380,7 +380,7 @@ public class SudokuBee extends Thread{
 		});
 
 		// exiting the game (not the program)
-		game.exit.addActionListener(_ -> {
+		game.exit.addActionListener(e -> {
 			// hide the game and status buttons
 			game.setVisible(false);
 			status.setVisible(false);
@@ -390,7 +390,7 @@ public class SudokuBee extends Thread{
 		});
 
 		// opening the optionsUI
-		game.options.addActionListener(_ -> {
+		game.options.addActionListener(e -> {
 			// hide the game and status buttons
 			game.setVisible(false);
 			status.setVisible(false);
@@ -401,7 +401,7 @@ public class SudokuBee extends Thread{
 		});
 
 		// solving the game
-		game.solve.addActionListener(_ -> {
+		game.solve.addActionListener(e -> {
 			// hiding the game and status buttons
 			game.setVisible(false);
 			status.setVisible(false);
@@ -413,7 +413,7 @@ public class SudokuBee extends Thread{
 		});
 
 		// opening helpUI
-		game.help.addActionListener(_ -> {
+		game.help.addActionListener(event -> {
 				help(5);
 		});
 	}
@@ -425,17 +425,17 @@ public class SudokuBee extends Thread{
 		help = new UIHelp(GP.panel[0], num);
 
 		// going to the next instruction
-		help.next.addActionListener(_ -> {
+		help.next.addActionListener(event -> {
 			help.increase();
-		});
+		});	
 
 		// going to the previous instruction
-		help.back.addActionListener(_ -> {
+		help.back.addActionListener(event -> {
 			help.decrease();
 		});
 
 		// leaving the helpUI
-		help.cancel.addActionListener(_ -> {
+		help.cancel.addActionListener(event -> {
 			help.decompose();
 			GP.setVisible(help.panelNum);
 			help = null;
@@ -448,7 +448,7 @@ public class SudokuBee extends Thread{
 		solve = new UISolve(GP.solve);
 
 		// leaving the solveUI
-		solve.cancel.addActionListener(_ -> {
+		solve.cancel.addActionListener(event -> {
 			// make the status and game buttons visible
 			status.setVisible(true);
 			game.setVisible(true);
@@ -462,12 +462,12 @@ public class SudokuBee extends Thread{
 		});
 
 		// this changes when the user clicks on "Experiment Mode" in the solveUI
-		solve.mode.addActionListener(_ -> {
+		solve.mode.addActionListener(event -> {
 			solve.changeMode();
 		});
 
 		// processes the solving of the sudoku board
-		solve.solve.addActionListener(_ -> {
+		solve.solve.addActionListener(event -> {
 			status.setVisible(false);
 			try {
 				numEmp = Integer.parseInt(solve.numEmployed.getText());
@@ -658,7 +658,7 @@ public class SudokuBee extends Thread{
 		// save, reset, and load buttons show up when in game mode
 
 		// yes1 - for pure create mode; generate the manually created puzzle
-		status.yes1.addActionListener(_ -> {
+		status.yes1.addActionListener(event -> {
 			int sudoku[][][] = board.getSudokuArray();
 			Subgrid subgrid[] = new Subgrid[sudoku.length];
 			int subDimY = (int)Math.sqrt(sudoku.length);
@@ -699,22 +699,22 @@ public class SudokuBee extends Thread{
 		});
 
 		// no1 - exit the puzzle creation and return to main menu
-		status.no1.addActionListener(_ -> {
+		status.no1.addActionListener(event -> {
 			exit(1);
 		});
 
 		// yes2 - for generation mode; create the generated puzzle according to specs
-		status.yes2.addActionListener(_ -> {
+		status.yes2.addActionListener(event -> {
 			statusFunction(4);
 		});
 
 		// no2 - exit the generation and return to main menu
-		status.no2.addActionListener(_ -> {
+		status.no2.addActionListener(event -> {
 			exit(1);
 		});
 
 		// open the loadUI 
-		status.open.addActionListener(_ -> {
+		status.open.addActionListener(event -> {
 			// hide the game main buttons and the status buttons
 			game.setVisible(false);
 			status.setVisible(false);
@@ -725,7 +725,7 @@ public class SudokuBee extends Thread{
 		});
 
 		// open the saveUI
-		status.save.addActionListener(_ -> {
+		status.save.addActionListener(event -> {
 			// hiding the game main buttons and the status buttons
 			game.setVisible(false);
 			status.setVisible(false);
@@ -735,7 +735,7 @@ public class SudokuBee extends Thread{
 		});
 
 		// open the resetUI
-		status.reset.addActionListener(_ -> {
+		status.reset.addActionListener(event -> {
 			// hiding the game main buttons and the status buttons
 			game.setVisible(false);
 			status.setVisible(false);
@@ -826,7 +826,7 @@ public class SudokuBee extends Thread{
 		game.setVisible(false);
 
 		// cancelling brings u back to the sudoku game
-		save.cancel.addActionListener(_ -> {
+		save.cancel.addActionListener(event -> {
 			// make game and status buttons visible
 			game.setVisible(true);
 			status.setVisible(true);
@@ -839,7 +839,7 @@ public class SudokuBee extends Thread{
 		});
 
 		// save the current game (as .sav file)
-		save.save.addActionListener(_ -> {
+		save.save.addActionListener(event -> {
 			saveFunction();
 		});
 
@@ -895,7 +895,7 @@ public class SudokuBee extends Thread{
 		exit = new UIExit(GP.panel[0], num);
 
 		// pressing yes on any exit yes button 
-		exit.yes.addActionListener(_ -> {
+		exit.yes.addActionListener(event -> {
 			GP.setVisibleButton(true);
 			try {
 				game.setVisible(true);
@@ -948,7 +948,7 @@ public class SudokuBee extends Thread{
 		});
 
 		// pressing no on any exit button
-		exit.no.addActionListener(_ -> {
+		exit.no.addActionListener(event -> {
 			GP.setVisibleButton(true);
 			try {
 				game.setVisible(true);
@@ -973,7 +973,7 @@ public class SudokuBee extends Thread{
 			exit = null;
 		});
 		
-		exit.okay.addActionListener(_ -> {
+		exit.okay.addActionListener(event -> {
 			GP.setVisibleButton(true);
 			game.setVisible(true);
 			status.setVisible(true);
@@ -1026,7 +1026,7 @@ public class SudokuBee extends Thread{
 		options = new UIOptions(GP.panel);
 
 		// exiting the optionsUI
-		options.exit.addActionListener(_ -> {
+		options.exit.addActionListener(event -> {
 			// make game and status buttons visible
 			try {
 				game.setVisible(true);
@@ -1042,31 +1042,31 @@ public class SudokuBee extends Thread{
 
 		// action listeners for the left and right buttons
 		// for setting the grid size (6x6, 9x9, etc.)
-		options.left[0].addActionListener(_ -> {
+		options.left[0].addActionListener(event -> {
 			options.setUpperOption(false);
 		});
 
-		options.right[0].addActionListener(_ -> {
+		options.right[0].addActionListener(event -> {
 			options.setUpperOption(true);
 		});
 
 		// action listeners for the left and right buttons
 		// for setting the sound of the program
-		options.left[1].addActionListener(_ -> {
+		options.left[1].addActionListener(event -> {
 			options.setLowerOption(false);
 			soundFunction();
 		});
 		
-		options.right[1].addActionListener(_ -> {
+		options.right[1].addActionListener(event -> {
 			options.setLowerOption(true);
 			soundFunction();
 		});
 
-		options.rightNav.addActionListener(_ -> {
+		options.rightNav.addActionListener(event -> {
 			options.increase();
 		});
 
-		options.leftNav.addActionListener(_ -> {
+		options.leftNav.addActionListener(event -> {
 				options.decrease();
 		});
 	}
@@ -1094,7 +1094,7 @@ public class SudokuBee extends Thread{
 		} catch (Exception e) {}
 		generation = new UIGenerate(GP.solve);
 
-		generation.okay.addActionListener(_ -> {
+		generation.okay.addActionListener(event -> {
 			chosenGrid = generation.chosen;
 			percentOfGivenCells = generation.sliderValue;
 			
@@ -1165,7 +1165,7 @@ public class SudokuBee extends Thread{
 			}
 		});
 
-		generation.cancel.addActionListener(_ -> {			
+		generation.cancel.addActionListener(event -> {			
 			generation.decompose();
 			generation = null;
 
@@ -1179,15 +1179,15 @@ public class SudokuBee extends Thread{
 			GP.setVisible(5);
 		});
 
-		generation.empty.addActionListener(_ -> {
+		generation.empty.addActionListener(event -> {
 			generation.changeMode(1);
 		});
 
-		generation.manual.addActionListener(_ -> {
+		generation.manual.addActionListener(event -> {
 			generation.changeMode(2);
 		});
 
-		generation.genSlider.addChangeListener(_ -> {
+		generation.genSlider.addChangeListener(event -> {
 			generation.setSliderValue();
 		});
 	}
